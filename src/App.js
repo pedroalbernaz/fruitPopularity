@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./app.css";
+import { Bars } from "./bars";
+import { List } from "./list";
+import { loadData } from "./actions/fruitActions";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends React.Component {
+  componentDidMount() {
+    window.FruitasticApi.get(this.cb);
+  }
+  cb = response => {
+    this.props.dispatch(loadData(response));
+  };
+  render() {
+    const { fruitData, dispatch, selectedFruit } = this.props;
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h2>Favorite Fruits</h2>
+        </header>
+        <div className="App-Wrapper">
+          <Bars fruitData={fruitData} dispatch={dispatch} selectedFruit={selectedFruit} />
+          <List fruitData={fruitData} selectedFruit={selectedFruit} />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
