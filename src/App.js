@@ -1,5 +1,5 @@
 import React from "react";
-import "./app.css";
+import "./App.css";
 import { Bars } from "./bars";
 import { List } from "./list";
 import { loadData } from "./actions/fruitActions";
