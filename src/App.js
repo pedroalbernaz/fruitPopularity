@@ -13,6 +13,7 @@ export class App extends React.Component {
   };
   render() {
     const { fruitData, dispatch, selectedFruit } = this.props;
+    console.log('testing')
     return (
       <div className="App">
         <header className="App-header">
